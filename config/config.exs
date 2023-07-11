@@ -19,7 +19,7 @@ config :pento, PentoWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Pento.PubSub,
-  live_view: [signing_salt: "5F9fW55t"]
+  live_view: [signing_salt: "7FSpARlQ"]
 
 # Configures the mailer
 #

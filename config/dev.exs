@@ -23,7 +23,7 @@ config :pento, PentoWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "/yvSRCvxXVlwm8O9gNxu/zlONQO6bxz5xfMHiMT72kQNEDb0FibdUdllefmPWjHF",
+  secret_key_base: "hBXMp7FcVgtovTc1dJW+0yQEH1teg6VCb31n7ZmnBga9tnQxcvHHKENwnuqX1vwq",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
