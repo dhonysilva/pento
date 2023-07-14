@@ -15,6 +15,7 @@ defmodule PentoWeb.ProductLive.FormComponent do
       <.simple_form
         for={@form}
         id="product-form"
+        multipart
         phx-target={@myself}
         phx-change="validate"
         phx-submit="save"
@@ -23,6 +24,10 @@ defmodule PentoWeb.ProductLive.FormComponent do
         <.input field={@form[:description]} type="text" label="Description" />
         <.input field={@form[:unit_price]} type="number" label="Unit price" step="any" />
         <.input field={@form[:sku]} type="number" label="Sku" />
+        <div phx-drop-target={@uploads.image.ref}>
+          <.label>Image</.label>
+          <.live_file_input upload={@uploads.image} />
+        </div>
         <:actions>
           <.button phx-disable-with="Saving...">Save Product</.button>
         </:actions>
