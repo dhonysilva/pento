@@ -16,6 +16,7 @@ defmodule PentoWeb.DemographicLive.Form do
   end
 
   def assign_changeset(%{assigns: %{demographic: demographic}} = socket) do
-    assign(socket, :changeset, Survey.change_demographic(demographic))
+    socket
+    |> assign(:form, to_form(Survey.change_demographic(demographic)))
   end
 end
