@@ -3,6 +3,7 @@ defmodule PentoWeb.SurveyLive do
 
   alias __MODULE__.Component
   alias Pento.Survey
+  alias PentoWeb.DemographicLive
 
   # Esse é nosso standard default mount. Retornando um unchanget socket
   # O que é um unchanged?
