@@ -3,14 +3,18 @@ defmodule PentoWeb.SurveyLive do
 
   alias __MODULE__.Component
   alias Pento.Survey
+  alias Pento.Catalog
   alias PentoWeb.DemographicLive
+  alias PentoWeb.RatingLive
+  alias PentoWeb.RatingLive.Show
 
   # Esse é nosso standard default mount. Retornando um unchanget socket
   # O que é um unchanged?
   def mount(_params, _session, socket) do
     {:ok,
      socket
-     |> assign_demographic}
+     |> assign_demographic()
+     |> assign_products()}
   end
 
   defp assign_demographic(%{assigns: %{current_user: current_user}} = socket) do
@@ -19,6 +23,14 @@ defmodule PentoWeb.SurveyLive do
       :demographic,
       Survey.get_demographic_by_user(current_user)
     )
+  end
+
+  def assign_products(%{assigns: %{current_user: current_user}} = socket) do
+    assign(socket, :products, list_products(current_user))
+  end
+
+  defp list_products(user) do
+    Catalog.list_products_with_user_rating(user)
   end
 
   def handle_info({:created_demographic, demographic}, socket) do
