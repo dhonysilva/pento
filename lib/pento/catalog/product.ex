@@ -2,6 +2,8 @@ defmodule Pento.Catalog.Product do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Pento.Catalog.Rating
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "products" do
@@ -12,6 +14,8 @@ defmodule Pento.Catalog.Product do
     field :image_upload, :string
 
     timestamps()
+
+    has_many :ratings, Rating
   end
 
   @doc false
