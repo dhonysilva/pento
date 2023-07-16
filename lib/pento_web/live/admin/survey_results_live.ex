@@ -62,14 +62,14 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
   end
 
   defp subtitle do
-    "average star ratings per product"
+    "Average Star Ratings per Product"
   end
 
   defp x_axis do
-    "products"
+    "Products"
   end
 
   defp y_axis do
-    "stars"
+    "Stars"
   end
 end
