@@ -29,7 +29,9 @@
       </div> --%>
       <div>
         <.form
-          for={:age_group_filter}
+          :let={f}
+          for={%{}}
+          as={:age_group_filter}
           phx-change="age_group_filter"
           phx-target={@myself}
           id="age-group-form"

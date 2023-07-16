@@ -57,15 +57,15 @@ defmodule Pento.Catalog.Product.Query do
   end
 
   defp apply_age_group_filter(query, "18 and under") do
-    birth_year = Date.utc_now().year - 18
+    birth_year = DateTime.utc_now().year - 18
 
     query
-    |> where([p, r, u, d], d.year_of_birth >= ^18)
+    |> where([p, r, u, d], d.year_of_birth >= ^birth_year)
   end
 
   defp apply_age_group_filter(query, "18 to 25") do
-    birth_year_min = Date.utc_now().year - 18
-    birth_year_max = Date.utc_now().year - 25
+    birth_year_max = DateTime.utc_now().year - 18
+    birth_year_min = DateTime.utc_now().year - 25
 
     query
     |> where(
@@ -75,8 +75,8 @@ defmodule Pento.Catalog.Product.Query do
   end
 
   defp apply_age_group_filter(query, "25 to 35") do
-    birth_year_min = Date.utc_now().year - 25
-    birth_year_max = Date.utc_now().year - 35
+    birth_year_max = DateTime.utc_now().year - 25
+    birth_year_min = DateTime.utc_now().year - 35
 
     query
     |> where(
@@ -86,7 +86,7 @@ defmodule Pento.Catalog.Product.Query do
   end
 
   defp apply_age_group_filter(query, "35 and up") do
-    birth_year = Date.utc_now().year - 35
+    birth_year = DateTime.utc_now().year - 35
 
     query
     |> where(
