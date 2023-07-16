@@ -40,7 +40,8 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
     assign(
       socket,
       :products_with_average_ratings,
-      get_products_with_average_ratings(%{age_group_filter: age_group_filter})
+      # get_products_with_average_ratings(%{age_group_filter: age_group_filter})
+      Catalog.products_with_average_ratings(%{age_group_filter: age_group_filter})
     )
   end
 
@@ -96,6 +97,7 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
      |> assign_age_group_filter(age_group_filter)
      |> assign_products_with_average_ratings()
      |> assign_dataset()
+     |> assign_chart()
      |> assign_chart_svg()}
   end
 
