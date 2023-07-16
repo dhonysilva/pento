@@ -20,4 +20,23 @@ defmodule PentoWeb.RatingLive.Form do
     socket
     |> assign(:form, to_form(Survey.change_rating(rating)))
   end
+
+  def handle_event("save", %{"rating" => rating_params}, socket) do
+    {:noreply, save_rating(socket, rating_params)}
+  end
+
+  def save_rating(
+        %{assigns: %{product_index: product_index, product: product}} = socket,
+        rating_params
+      ) do
+    case Survey.create_rating(rating_params) do
+      {:ok, rating} ->
+        product = %{product | ratings: [rating]}
+        send(self(), {:create_rating, product, product_index})
+        socket
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        assign(socket, changeset: changeset)
+    end
+  end
 end
