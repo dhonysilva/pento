@@ -32,6 +32,11 @@ defmodule PentoWeb.UserRegistrationLive do
         </.error>
 
         <.input field={@form[:email]} type="email" label="Email" required />
+
+        <.inputs_for :let={p} field={@form[:profile]}>
+          <.input field={p[:username]} type="text" label="Username" required />
+        </.inputs_for>
+
         <.input field={@form[:password]} type="password" label="Password" required />
 
         <:actions>

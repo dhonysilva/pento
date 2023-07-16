@@ -1,6 +1,9 @@
 defmodule Pento.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Pento.Accounts.Profile
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
@@ -8,6 +11,8 @@ defmodule Pento.Accounts.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+
+    has_one :profile, Profile
 
     timestamps()
   end
@@ -40,6 +45,7 @@ defmodule Pento.Accounts.User do
     |> cast(attrs, [:email, :password])
     |> validate_email(opts)
     |> validate_password(opts)
+    |> cast_assoc(:profile, with: &Profile.registration_changeset/2)
   end
 
   defp validate_email(changeset, opts) do
