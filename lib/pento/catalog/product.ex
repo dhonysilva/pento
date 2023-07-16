@@ -2,7 +2,7 @@ defmodule Pento.Catalog.Product do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Pento.Catalog.Rating
+  alias Pento.Survey.Rating
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
