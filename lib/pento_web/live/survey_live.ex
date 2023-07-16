@@ -13,7 +13,6 @@ defmodule PentoWeb.SurveyLive do
   @survey_results_topic "survey_results"
 
   # Esse é nosso standard default mount. Retornando um unchanget socket
-  # O que é um unchanged?
   def mount(_params, _session, socket) do
     {:ok,
      socket

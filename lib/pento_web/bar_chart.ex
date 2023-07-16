@@ -25,7 +25,7 @@ defmodule PentoWeb.BarChart do
   end
 
   def render_bar_chart(chart, title, subtitle, x_axis, y_axis) do
-    Plot.new(500, 400, chart)
+    Plot.new(800, 400, chart)
     |> Plot.titles(title, subtitle)
     |> Plot.axis_labels(x_axis, y_axis)
     |> Plot.to_svg()
