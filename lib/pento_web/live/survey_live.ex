@@ -7,6 +7,10 @@ defmodule PentoWeb.SurveyLive do
   alias PentoWeb.DemographicLive
   alias PentoWeb.RatingLive
   alias PentoWeb.RatingLive.Show
+  alias PentoWeb.Endpoint
+
+  # Broadcast Topic
+  @survey_results_topic "survey_results"
 
   # Esse é nosso standard default mount. Retornando um unchanget socket
   # O que é um unchanged?
@@ -48,6 +52,8 @@ defmodule PentoWeb.SurveyLive do
         updated_product,
         product_index
       ) do
+    Endpoint.broadcast(@survey_results_topic, "rating_created", %{})
+
     socket
     |> put_flash(:info, "Rating submitted succesfully.")
     |> assign(:products, List.replace_at(products, product_index, updated_product))
