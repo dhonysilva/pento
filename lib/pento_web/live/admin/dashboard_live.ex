@@ -1,6 +1,8 @@
 defmodule PentoWeb.Admin.DashboardLive do
   use PentoWeb, :live_view
 
+  alias PentoWeb.Admin.SurveyResultsLive
+
   alias PentoWeb.Endpoint
 
   @survey_results_topic "survey_results"

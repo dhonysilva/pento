@@ -36,8 +36,14 @@ defmodule PentoWeb.SurveyLive do
     Catalog.list_products_with_user_rating(user)
   end
 
+  @impl true
   def handle_info({:created_demographic, demographic}, socket) do
     {:noreply, handle_demographic_created(socket, demographic)}
+  end
+
+  @impl true
+  def handle_info({:created_rating, update_product, product_index}, socket) do
+    {:noreply, handle_rating_created(socket, update_product, product_index)}
   end
 
   def handle_demographic_created(socket, demographic) do

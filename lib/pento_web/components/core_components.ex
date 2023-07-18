@@ -295,15 +295,6 @@ defmodule PentoWeb.CoreComponents do
     |> input()
   end
 
-  def input(%{type: "rating"} = assigns) do
-    ~H"""
-    <select id={@id} name={@name} class="border focus:ring-zinc-500" multiple={@multiple} {@rest}>
-      <option :if={@prompt} value=""><%= @prompt %></option>
-      <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
-    </select>
-    """
-  end
-
   def input(%{type: "checkbox", value: value} = assigns) do
     assigns =
       assign_new(assigns, :checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
@@ -325,6 +316,15 @@ defmodule PentoWeb.CoreComponents do
       </label>
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
+    """
+  end
+
+  def input(%{type: "rating"} = assigns) do
+    ~H"""
+    <select id={@id} name={@name} class="border focus:ring-zinc-500" multiple={@multiple} {@rest}>
+      <option :if={@prompt} value=""><%= @prompt %></option>
+      <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+    </select>
     """
   end
 
