@@ -24,20 +24,44 @@ defmodule PentoWeb.ProductLive.FormComponent do
         <.input field={@form[:description]} type="text" label="Description" />
         <.input field={@form[:unit_price]} type="number" label="Unit price" step="any" />
         <.input field={@form[:sku]} type="number" label="Sku" />
-        <div phx-drop-target={@uploads.image.ref}>
-          <.label>Image</.label>
-          <.live_file_input upload={@uploads.image} />
+
+        <div id="images">
+          <div
+            class="p-4 border-2 border-dashed border-slate-300 rounded-md text-center text-slate-600"
+            phx-drop-target={@uploads.image.ref}
+          >
+            <div class="flex flex-row items-center justify-center">
+              <.live_file_input upload={@uploads.image} />
+              <span class="font-semibold text-slate-500">or drag and drop here</span>
+            </div>
+          </div>
         </div>
 
-        <%= for image <- @uploads.image.entries do %>
-          <div class="mt-4">
-            <.live_img_preview entry={image} width="60" />
+        <div class="mt-4 flex flex-row flex-wrap justify-start content-start items-start gap-2">
+          <div
+            :for={entry <- @uploads.image.entries}
+            class="flex flex-col items-center justify-start space-y-1"
+          >
+            <div class="w-32 h-32 overflow-clip">
+              <.live_img_preview entry={entry} />
+            </div>
+
+            <div class="w-full">
+              <div class="mb-2 text-xs font-semibold inline-block text-slate-600">
+                <%= entry.progress %>%
+              </div>
+              <div class="flex h-2 overflow-hidden text-base bg-slate-200 rounded-lg mb-2">
+                <span style={"width: #{entry.progress}%"} class="shadow-md bg-slate-500"></span>
+              </div>
+              <.error :for={err <- upload_errors(@uploads.image, entry)}>
+                <%= Phoenix.Naming.humanize(err) %>
+              </.error>
+            </div>
+            <a phx-click="cancel" phx-target={@myself} phx-value-ref={entry.ref}>
+              <.icon name="hero-trash" />
+            </a>
           </div>
-          <progress value={image.progress} max="100" />
-          <%= for err <- upload_errors(@uploads.image, image) do %>
-            <.error><%= err %></.error>
-          <% end %>
-        <% end %>
+        </div>
 
         <:actions>
           <.button phx-disable-with="Saving...">Save Product</.button>
@@ -62,6 +86,10 @@ defmodule PentoWeb.ProductLive.FormComponent do
        max_file_size: 9_000_000,
        auto_upload: true
      )}
+  end
+
+  def handle_event("cancel", %{"ref" => ref}, socket) do
+    {:noreply, cancel_upload(socket, :image, ref)}
   end
 
   @impl true
