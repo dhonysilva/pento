@@ -19,6 +19,14 @@ defmodule PentoWeb.CoreComponents do
   alias Phoenix.LiveView.JS
   import PentoWeb.Gettext
 
+  def pre(assigns) do
+    ~H"""
+    <pre>
+      <%= inspect(@inspect, pretty: true) %>
+    </pre>
+    """
+  end
+
   @doc """
   Renders a modal.
 
