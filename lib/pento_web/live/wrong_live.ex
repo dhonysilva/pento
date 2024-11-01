@@ -2,7 +2,8 @@ defmodule PentoWeb.WrongLive do
   use PentoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, score: 0, message: "Make a guess:")}
+    if connected?(socket), do: :timer.send_interval(1000, self(), :tick)
+    {:ok, assign(socket, score: 0, message: "Make a guess:", seconds: 0)}
   end
 
   def handle_event("guess", %{"number" => guess}, socket) do
@@ -31,10 +32,28 @@ defmodule PentoWeb.WrongLive do
         </.link>
       <% end %>
     </h2>
+    <h2>
+      Pomodoro
+    </h2>
+    <div><%= @seconds %></div>
+
+    <button phx-click="start-clock">Start</button>
     """
   end
 
   def time() do
     DateTime.utc_now() |> to_string
+  end
+
+  def handle_event("start-clock", params, socket) do
+    {:noreply, socket |> assign(seconds: 15)}
+  end
+
+  def handle_info(:tick, %{assigns: %{seconds: 0}} = socket) do
+    {:noreply, socket |> assign(:seconds, 0)}
+  end
+
+  def handle_info(:tick, %{assigns: %{seconds: seconds}} = socket) do
+    {:noreply, socket |> assign(:seconds, seconds - 1)}
   end
 end
