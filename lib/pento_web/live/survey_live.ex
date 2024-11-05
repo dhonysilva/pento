@@ -8,7 +8,7 @@ defmodule PentoWeb.SurveyLive do
   def mount(_params, _session, socket) do
     {:ok,
      socket
-     |> assign_demographic}
+     |> assign_demographic()}
   end
 
   defp assign_demographic(%{assigns: %{current_user: current_user}} = socket) do
