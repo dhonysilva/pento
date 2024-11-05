@@ -2,6 +2,7 @@ defmodule PentoWeb.RatingLive.Index do
   use Phoenix.Component
   import Phoenix.HTML
   alias PentoWeb.RatingLive
+  alias PentoWeb.RatingLive.Show
 
   attr :products, :list, required: true
   attr :current_user, :any, required: true
@@ -37,7 +38,8 @@ defmodule PentoWeb.RatingLive.Index do
     ~H"""
     <div><%= @product.name %></div>
     <%= if rating = List.first(@product.ratings) do %>
-      <RatingLive.Show.stars rating={rating} product={@product} />
+      <%!-- <RatingLive.Show.stars rating={rating} product={@product} /> --%>
+      <Show.stars rating={rating} />
     <% else %>
       <div>
         <h3><%= @product.name %> rating coming soon.</h3>
