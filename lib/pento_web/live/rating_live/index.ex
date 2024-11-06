@@ -34,15 +34,24 @@ defmodule PentoWeb.RatingLive.Index do
     Enum.all?(products, fn product -> not Enum.empty?(product.ratings) end)
   end
 
+  attr :product, :any, required: true
+  attr :current_user, :any, required: true
+  attr :index, :integer, required: true
+
   def product_rating(assigns) do
     ~H"""
     <div><%= @product.name %></div>
     <%= if rating = List.first(@product.ratings) do %>
-      <%!-- <RatingLive.Show.stars rating={rating} product={@product} /> --%>
       <Show.stars rating={rating} />
     <% else %>
       <div>
-        <h3><%= @product.name %> rating coming soon.</h3>
+        <.live_component
+          module={RatingLive.Form}
+          id={"rating-form-#{@product.id}"}
+          product={@product}
+          product_index={@index}
+          current_user={@current_user}
+        />
       </div>
     <% end %>
     """

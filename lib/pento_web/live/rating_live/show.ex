@@ -2,6 +2,8 @@ defmodule PentoWeb.RatingLive.Show do
   use Phoenix.Component
   import Phoenix.HTML
 
+  attr :rating, :any, required: true
+
   def stars(assigns) do
     ~H"""
     <div>
@@ -14,11 +16,11 @@ defmodule PentoWeb.RatingLive.Show do
     """
   end
 
-  def filled_stars(stars) do
-    List.duplicate("&#x2605;", stars)
+  def filled_stars(starts) do
+    List.duplicate("&#x2605;", starts)
   end
 
-  def unfilled_stars(stars) do
-    List.duplicate("&#x2605;", 5 - stars)
+  def unfilled_stars(starts) do
+    List.duplicate("&#x2606;", 5 - starts)
   end
 end
