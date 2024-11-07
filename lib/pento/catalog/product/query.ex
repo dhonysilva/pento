@@ -7,6 +7,11 @@ defmodule Pento.Catalog.Product.Query do
 
   def base, do: Product
 
+  def with_zero_ratings(query \\ base()) do
+    query
+    |> select([p], {p.name, 0})
+  end
+
   def with_user_ratings(user) do
     base()
     |> preload_user_ratings(user)

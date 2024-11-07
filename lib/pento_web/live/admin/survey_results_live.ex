@@ -29,8 +29,18 @@ defmodule PentoWeb.Admin.SurveyResultsLive do
     assign(
       socket,
       :products_with_average_ratings,
-      Catalog.products_with_average_ratings(%{age_group_filter: age_group_filter})
+      get_products_with_average_ratings(%{age_group_filter: age_group_filter})
     )
+  end
+
+  defp get_products_with_average_ratings(filter) do
+    case Catalog.products_with_average_ratings(filter) do
+      [] ->
+        Catalog.products_with_zero_ratings()
+
+      products ->
+        products
+    end
   end
 
   def assign_dataset(
