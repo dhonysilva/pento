@@ -38,7 +38,7 @@ defmodule Pento.Catalog.Product.Query do
   def average_ratings(query) do
     query
     |> group_by([p], p.id)
-    |> select([p, r], {p.name, avg(r.starts)})
+    |> select([p, r], {p.name, avg(r.stars)})
     |> order_by([p, r], [{:asc, p.name}])
   end
 

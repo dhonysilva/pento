@@ -3,7 +3,7 @@ defmodule Pento.Repo.Migrations.CreateRatings do
 
   def change do
     create table(:ratings) do
-      add :starts, :integer
+      add :stars, :integer
       add :user_id, references(:users, on_delete: :nothing)
       add :product_id, references(:products, on_delete: :nothing)
 

@@ -26,7 +26,7 @@ defmodule Pento.SurveyFixtures do
     {:ok, rating} =
       attrs
       |> Enum.into(%{
-        starts: 42
+        stars: 42
       })
       |> Pento.Survey.create_rating()
 

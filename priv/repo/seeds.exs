@@ -29,6 +29,66 @@ products = [
     description: "Bat the ball back and forth. Don't miss",
     sku: 15_222_324,
     unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 01",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_124,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 02",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_224,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 03",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_324,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 04",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_424,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 05",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_524,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 06",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_624,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 07",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_724,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 08",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_724,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 09",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_326,
+    unit_price: 12.00
+  },
+  %{
+    name: "Table Tennis 10",
+    description: "Bat the ball back and forth. Don't miss",
+    sku: 15_222_325,
+    unit_price: 11.00
   }
 ]
 
