@@ -1,7 +1,6 @@
 <section class="ml-8">
   <pre><%= inspect assigns.age_group_filter, pretty: true %></pre>
-  <pre><%= inspect assigns.products_with_average_ratings, pretty: true %></pre>
-  <pre><%= inspect assigns.chart, pretty: true %></pre>
+  <pre><%= inspect assigns.gender_filter, pretty: true %></pre>
   <h2 class="font-light text-2xl">Survey Results</h2>
   <div id="survey-results-component">
     <div class="container">
@@ -34,8 +33,8 @@
           id="gender-form"
         >
           <label>By gender:</label>
-          <select name="age_filter" id="age_filter">
-            <%= for gender <- ["all", "male", "female"] do %>
+          <select name="gender_filter" id="gender_filter">
+            <%= for gender <- ["all", "male", "female", "prefer not to say", "other"] do %>
               <option value={gender} selected={@gender_filter == gender}>
                 <%= gender %>
               </option>
